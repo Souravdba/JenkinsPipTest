@@ -13,11 +13,14 @@ pipeline{
         }
         stage('RUN') {
              steps{
+               retry(3)
+               {
                configFileProvider([configFile(fileId: 'SCRIPT_FILE', variable: 'Envfile')]) {
                     sh "chmod u+x $Envfile;. $Envfile;echo \$DB"
                     sh "echo \$DB"
                     sh "echo hi"
                     sh "python newtwo/bin/Maincode.py"
+                }
                 }
                 }
               
