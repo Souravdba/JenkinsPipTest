@@ -16,7 +16,7 @@ pipeline{
              steps{    
               script
                {
-                define retryAttempt=0
+                def retryAttempt=0
                }
                retry(3)
                {
