@@ -8,6 +8,7 @@ Date:21/06/2019
 """
 from datetime import datetime
 import pytz
+import mysql.connector
 utc_time = datetime.utcnow()
 tz = pytz.timezone('America/St_Johns')
 
