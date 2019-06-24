@@ -12,8 +12,6 @@ pipeline{
          }
         }
         stage('RUN') {
-            def retryAttempt = 0
-            retry(2) {
              steps{
                configFileProvider([configFile(fileId: 'SCRIPT_FILE', variable: 'Envfile')]) {
                     sh "chmod u+x $Envfile;. $Envfile;echo \$DB"
@@ -22,7 +20,7 @@ pipeline{
                     sh "python newtwo/bin/Maincode.py"
                 }
                 }
-              }
+              
 
             }
          }
