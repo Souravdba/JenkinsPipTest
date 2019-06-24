@@ -1,4 +1,7 @@
 pipeline{
+    environment {
+     retryAttempt = 0
+   }
     agent {
         label 'master'
     }
@@ -11,10 +14,8 @@ pipeline{
           sh 'pip install -r requirements.txt'
          }
         }
-        stage('RUN') {
-             def retryAttempt = 0
-             steps{
-               
+        stage('RUN') { 
+             steps{    
                retry(3)
                {
                if (retryAttempt > 0) {
