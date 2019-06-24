@@ -14,14 +14,11 @@ pipeline{
         stage('RUN') {
 
              steps{    
-              script
-               {
-                def retryAttempt=0
-               }
                retry(3)
                {
                script
                {
+               def retryAttempt=0
                if (retryAttempt > 0) {
                sleep(1000 * 2 + 2000 * retryAttempt)
                }
