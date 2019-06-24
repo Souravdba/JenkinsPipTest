@@ -12,8 +12,9 @@ pipeline{
          }
         }
         stage('RUN') {
+             def retryAttempt = 0
              steps{
-               def retryAttempt = 0
+               
                retry(3)
                {
                if (retryAttempt > 0) {
