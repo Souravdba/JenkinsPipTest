@@ -1,0 +1,22 @@
+pipeline{
+    agent {
+        label 'master'
+    }
+    stages{
+        stage('BUILD')
+        {
+         steps{
+          sh 'virtualenv --no-site-packages .env'
+          sh '. .env/bin/activate'
+          sh 'pip install -r requirements.txt'
+
+         }
+        }
+        stage('RUN') {
+            steps{
+                sh "echo hi"
+                sh "python newtwo/bin/Maincode.py"
+                }
+            }
+         }
+}
