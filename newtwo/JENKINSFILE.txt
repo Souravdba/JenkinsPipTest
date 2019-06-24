@@ -13,8 +13,13 @@ pipeline{
         }
         stage('RUN') {
              steps{
+               def retryAttempt = 0
                retry(3)
                {
+               if (retryAttempt > 0) {
+               sleep(1000 * 2 + 2000 * retryAttempt)
+               }
+               retryAttempt = retryAttempt + 1
                configFileProvider([configFile(fileId: 'SCRIPT_FILE', variable: 'Envfile')]) {
                     sh "chmod u+x $Envfile;. $Envfile;echo \$DB"
                     sh "echo \$DB"
