@@ -18,10 +18,13 @@ pipeline{
              steps{    
                retry(3)
                {
+               scripts
+               {
                if (retryAttempt > 0) {
                sleep(1000 * 2 + 2000 * retryAttempt)
                }
                retryAttempt = retryAttempt + 1
+               }
                configFileProvider([configFile(fileId: 'SCRIPT_FILE', variable: 'Envfile')]) {
                     sh "chmod u+x $Envfile;. $Envfile;echo \$DB"
                     sh "echo \$DB"
