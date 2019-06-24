@@ -18,7 +18,7 @@ pipeline{
              steps{    
                retry(3)
                {
-               scripts
+               script
                {
                if (retryAttempt > 0) {
                sleep(1000 * 2 + 2000 * retryAttempt)
